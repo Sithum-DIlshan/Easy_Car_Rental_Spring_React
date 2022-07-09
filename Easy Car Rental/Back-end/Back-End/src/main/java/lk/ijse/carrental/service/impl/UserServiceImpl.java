@@ -16,7 +16,7 @@ import java.util.List;
  * @author sithum
  */
 @Service
-@Transactional
+//@Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepo repo;

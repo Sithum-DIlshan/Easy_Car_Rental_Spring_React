@@ -1,5 +1,6 @@
 package lk.ijse.carrental.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("app/v1/account")
+@CrossOrigin
 public class AccountController {
 
 }
