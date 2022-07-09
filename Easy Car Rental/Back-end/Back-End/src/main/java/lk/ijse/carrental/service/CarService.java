@@ -16,7 +16,7 @@ public interface CarService {
 
     void updateCar(CarDto car);
 
-    List<CarDto> getAll(CarDto car);
+    List<CarDto> getAll();
 
     CarDto search(String id);
 }

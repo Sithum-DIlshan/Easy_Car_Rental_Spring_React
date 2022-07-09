@@ -19,4 +19,5 @@ public class CarDto {
     private String color;
     private String transmission;
     private String brand;
+    private double mileAge;
 }
