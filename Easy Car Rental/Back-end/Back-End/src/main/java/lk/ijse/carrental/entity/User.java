@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 /**
@@ -26,4 +29,8 @@ public class User {
     private String address;
     private String contact;
     private double salary;
+
+    @Cascade({CascadeType.ALL})
+    @OneToOne
+    Account account;
 }

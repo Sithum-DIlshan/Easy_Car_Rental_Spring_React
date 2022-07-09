@@ -29,5 +29,18 @@ public class UserController {
         return new ResponseUtil(200, "Save",null);
     }
 
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil update(@ModelAttribute UserDto user){
+        userService.updateUser(user);
+        return new ResponseUtil(200, "Update",null);
+    }
+
+    @DeleteMapping(params = {"id"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil delete(@RequestParam String id){
+        userService.deleteUser(id);
+        return new ResponseUtil(200, "Delete",null);
+    }
+
+
 
 }
