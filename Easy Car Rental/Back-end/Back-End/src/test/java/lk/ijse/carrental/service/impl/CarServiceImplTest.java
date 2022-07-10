@@ -25,10 +25,10 @@ class CarServiceImplTest {
     CarRepo repo;
 
 
-    @Test
-    void saveCar() {
-        repo.save(new Car("cccccccc", "ssss", "wwwwww", "ssssss"));
-    }
+//    @Test
+//    void saveCar() {
+//        repo.save(new Car("cccccccc", "ssss", "wwwwww", "ssssss"));
+//    }
 
     @Test
     void deleteCar() {
@@ -42,16 +42,16 @@ class CarServiceImplTest {
 
     }
 
-    @Test
-    void updateCar() {
-        assertThrows(RuntimeException.class,() -> {
-            if (repo.existsById("cccccccc")) {
-                repo.save(new Car("cccccccc", "ssss", "auto", "ssssss"));
-            } else {
-                throw new RuntimeException("");
-            }
-        });
-    }
+//    @Test
+//    void updateCar() {
+//        assertThrows(RuntimeException.class,() -> {
+//            if (repo.existsById("cccccccc")) {
+//                repo.save(new Car("cccccccc", "ssss", "auto", "ssssss"));
+//            } else {
+//                throw new RuntimeException("");
+//            }
+//        });
+//    }
 
     @Test
     void getAll() {

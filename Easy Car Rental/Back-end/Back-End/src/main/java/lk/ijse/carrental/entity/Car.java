@@ -23,4 +23,5 @@ public class Car {
     private String transmission;
     private String brand;
     private double mileAge;
+    private boolean available;
 }

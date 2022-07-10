@@ -9,33 +9,22 @@ import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
 
 /**
  * @author sithum
  */
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
 @ToString
-public class User {
+public class RegisterRequest {
     @Id
-    private String username;
-    private String name;
-    private String email;
-    private String password;
-    private String address;
-    private String contact;
-    private double salary;
+    private String regId;
+    private boolean confirmed;
 
-    @Cascade({CascadeType.ALL})
+    @Cascade({CascadeType.PERSIST,CascadeType.MERGE, CascadeType.SAVE_UPDATE})
     @OneToOne
-    Account account;
-
-//    @Cascade({CascadeType.ALL})
-//    @OneToOne
-//    RegisterRequest request;
+    User user;
 }

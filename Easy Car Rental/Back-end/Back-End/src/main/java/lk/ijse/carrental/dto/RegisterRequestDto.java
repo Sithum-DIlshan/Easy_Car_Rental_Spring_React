@@ -1,24 +1,24 @@
 package lk.ijse.carrental.dto;
 
+import lk.ijse.carrental.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * @author sithum
  */
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Data //getter and setter
+@Data
 @ToString
-public class CarDto {
-    private String carId;
-    private String color;
-    private String transmission;
-    private String brand;
-    private double mileAge;
-    private boolean available;
+public class RegisterRequestDto {
+    private String regId;
+    private boolean confirmed;
+//    User user;
 }
