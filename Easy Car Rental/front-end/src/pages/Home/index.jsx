@@ -1,5 +1,5 @@
 import {Component, Fragment} from "react";
-import Greeting from "../../components/Home/Greeting";
+import Variants from "../../components/Home/Greeting";
 
 class HomePage extends Component {
 
@@ -10,10 +10,11 @@ class HomePage extends Component {
     render() {
         return (
             <Fragment>
-                <Greeting/>
+                <Variants/>
             </Fragment>
         )
     }
 
 }
+
 export default HomePage;
