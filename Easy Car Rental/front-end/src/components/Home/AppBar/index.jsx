@@ -13,7 +13,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const ResponsiveAppBar = () => {
+const TransparentAppBar = () => {
 
 
     const [anchorElNav, setAnchorElNav] = React.useState(null)
@@ -35,7 +35,7 @@ const ResponsiveAppBar = () => {
     };
 
     return (
-        <AppBar position="absolute" style={{background: 'transparent', boxShadow: 'none'}}>
+        <AppBar position="absolute" style={{background: 'transparent', boxShadow: 'none',width:'100vw', height:'60px'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{justifyContent: "space-between"}}>
                     <Stack direction="row" spacing={2}>
@@ -48,7 +48,7 @@ const ResponsiveAppBar = () => {
                             sx={{
                                 mr: 2,
                                 display: {xs: 'none', md: 'flex'},
-                                fontFamily: 'monospace',
+                                fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
                                 color: 'white',
@@ -60,12 +60,13 @@ const ResponsiveAppBar = () => {
                     </Stack>
                     <Stack direction="row" spacing={3}>
                         <Button
-                            sx={{color: 'white'}}
+                            sx={{color: 'white',fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+                            }}
                             startIcon={<LoginIcon/>}
                         >Login</Button>
 
                         <Button
-                            sx={{color: 'white'}}
+                            sx={{color: 'white', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',   }}
                             startIcon={<HowToRegIcon/>}
                         >Register</Button>
                     </Stack>
@@ -74,9 +75,6 @@ const ResponsiveAppBar = () => {
 
             </Container>
         </AppBar>
-
-
     )
-
 };
-export default ResponsiveAppBar;
+export default TransparentAppBar;

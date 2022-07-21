@@ -1,8 +1,10 @@
 import {Component, Fragment} from "react";
-import Variants from "../../components/Home/Greeting";
+import Variants from "../../components/Home/AppBar";
 import {Slideshow} from "@material-ui/icons";
-import ResponsiveAppBar from "../../components/Home/Greeting";
-import MultiActionAreaCard from "../../components/common/Card";
+import TransparentAppBar from "../../components/Home/AppBar";
+import BackGroundImage from "../../components/Home/BackgroundImg";
+import QuickContact from "../../components/Home/SpeedDial";
+import ImgMediaCard from "../../components/Home/Cards";
 
 class HomePage extends Component {
 
@@ -13,9 +15,10 @@ class HomePage extends Component {
     render() {
         return (
             <Fragment>
-                <ResponsiveAppBar/>
-                <MultiActionAreaCard/>
-
+                <TransparentAppBar/>
+                <BackGroundImage/>
+                <QuickContact/>
+                <ImgMediaCard/>
             </Fragment>
         )
     }
