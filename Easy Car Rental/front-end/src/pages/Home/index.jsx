@@ -5,6 +5,7 @@ import TransparentAppBar from "../../components/Home/AppBar";
 import BackGroundImage from "../../components/Home/BackgroundImg";
 import QuickContact from "../../components/Home/SpeedDial";
 import ImgMediaCard from "../../components/Home/Cards";
+import SubscribeBar from "../../components/Home/SubscribeBar";
 
 class HomePage extends Component {
 
@@ -19,6 +20,7 @@ class HomePage extends Component {
                 <BackGroundImage/>
                 <QuickContact/>
                 <ImgMediaCard/>
+                <SubscribeBar/>
             </Fragment>
         )
     }

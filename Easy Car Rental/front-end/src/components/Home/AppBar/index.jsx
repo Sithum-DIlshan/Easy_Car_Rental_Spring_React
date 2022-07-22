@@ -9,12 +9,13 @@ import 'react-slideshow-image/dist/styles.css'
 import Stack from '@mui/material/Stack';
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import {useNavigate} from "react-router";
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const TransparentAppBar = () => {
-
+    const navigate = useNavigate();
 
     const [anchorElNav, setAnchorElNav] = React.useState(null)
     const [anchorElUser, setAnchorElUser] = React.useState(null)
@@ -33,6 +34,10 @@ const TransparentAppBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const register=(e)=>{
+        navigate('/register');
+    }
 
     return (
         <AppBar position="absolute" style={{background: 'transparent', boxShadow: 'none',width:'100vw', height:'60px'}}>
@@ -63,11 +68,13 @@ const TransparentAppBar = () => {
                             sx={{color: 'white',fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
                             }}
                             startIcon={<LoginIcon/>}
+
                         >Login</Button>
 
                         <Button
                             sx={{color: 'white', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',   }}
                             startIcon={<HowToRegIcon/>}
+                            onClick={register}
                         >Register</Button>
                     </Stack>
                 </Toolbar>

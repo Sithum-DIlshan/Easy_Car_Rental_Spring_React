@@ -16,7 +16,7 @@ export default function ImgMediaCard() {
                     component="img"
                     alt="green iguana"
                     height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
+                    image="https://media.istockphoto.com/photos/black-modern-car-3d-illustration-picture-id1191941530?k=20&m=1191941530&s=612x612&w=0&h=YTPpoHwIq_kLkc4CZk43XGhqdFBrNUHBssaVKAXKst4="
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -36,7 +36,7 @@ export default function ImgMediaCard() {
                 component="img"
                 alt="green iguana"
                 height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image="https://global.honda/top-page/common/img/newsroom/4220712eng.jpg"
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -56,7 +56,7 @@ export default function ImgMediaCard() {
                 component="img"
                 alt="green iguana"
                 height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
+                image="https://www.drivespark.com/images/2018-06/tata-nano-exterior-2.jpg"
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
