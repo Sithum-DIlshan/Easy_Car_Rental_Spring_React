@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import {IconButton} from "@mui/material";
 
 export default function BackGroundImage() {
     const scroll=()=>{
@@ -59,7 +61,17 @@ export default function BackGroundImage() {
 
             </Box>
             <Stack position={'relative'} bottom={'70px'} direction="row" justifyContent={'center'}>
-                <Button variant={'outlined'} sx={{color:'white', fontSize:'24px', fontFamily:'-apple-system, BlinkMacSystemFont, sans-serif'}} size={'large'} color={"info"} >Register</Button>
+                <IconButton var aria-label="delete" size={'large'} sx={{
+                    backgroundColor:'white',
+
+                    '&:hover': {
+                    backgroundColor: '#ffff',
+                    borderColor: '#ffff',
+                    boxShadow: 'none',
+                }
+                }} onClick={scroll}>
+                    <KeyboardDoubleArrowDownIcon color={'white'} />
+                </IconButton>
             </Stack>
         </Stack>
     );
