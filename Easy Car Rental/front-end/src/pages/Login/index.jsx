@@ -1,7 +1,7 @@
 import {Component, Fragment} from "react";
-import RegisterForm from "../../components/Register/Form";
+import LoginForm from "../../components/Login/Form/LoginForm";
 
-class RegisterPage extends Component {
+class LoginPage extends Component {
 
     constructor(props) {
         super(props);
@@ -10,11 +10,11 @@ class RegisterPage extends Component {
     render() {
         return (
             <Fragment>
-                <RegisterForm/>
+                <LoginForm/>
             </Fragment>
         )
     }
 
 }
 
-export default RegisterPage;
+export default LoginPage;

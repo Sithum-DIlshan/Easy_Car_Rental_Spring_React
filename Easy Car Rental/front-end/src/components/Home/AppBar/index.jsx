@@ -39,6 +39,10 @@ const TransparentAppBar = () => {
         navigate('/register');
     }
 
+    const login=(e)=>{
+        navigate('/login');
+    }
+
     return (
         <AppBar position="absolute" style={{background: 'transparent', boxShadow: 'none',width:'100vw', height:'60px'}}>
             <Container maxWidth="xl">
@@ -68,7 +72,7 @@ const TransparentAppBar = () => {
                             sx={{color: 'white',fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
                             }}
                             startIcon={<LoginIcon/>}
-
+                            onClick={login}
                         >Login</Button>
 
                         <Button

@@ -17,7 +17,7 @@ export default function BackGroundImage() {
     return (
         <Stack direction={'column'}>
             <Box sx={{
-                backgroundImage: `url(https://cdn2.rcstatic.com/com.rentalcars.185492029745.eu-west-1.web.prod.static-live/images/landing-pages/home/background-large.jpg)`,
+                backgroundImage: `url(https://legendary-digital-network-assets.s3.amazonaws.com/wp-content/uploads/2020/09/13023140/Supernatural-Featured.jpg)`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
@@ -29,7 +29,6 @@ export default function BackGroundImage() {
                 justifyContent: 'center',
                 flexDirection:'column',
             }}>
-
                 <Card sx={{
                     backgroundColor: 'transparent',
                     width: '40%',
@@ -44,15 +43,16 @@ export default function BackGroundImage() {
                         Easy-Car-Rental
                     </Typography>
                     <Typography color={'white'} fontFamily={'-apple-system, BlinkMacSystemFont, sans-serif'}
-                                fontSize={'30px'} fontWeight={'300'}>
+                                fontSize={'24px'} fontWeight={'300'} width={'230px'}>
                         Car Rental – Search, Compare & Save
                         Free cancellations on most bookings
-                        60,000+ locations
+
 
                     </Typography>
 
                     <Typography color={'white'} fontFamily={'-apple-system, BlinkMacSystemFont, sans-serif'}
-                                fontSize={'30px'} fontWeight={'300'}>
+                                fontSize={'19px'} fontWeight={'300'} width={'250px'}>
+                        60,000+ locations
                     Customer support in 40+ languages
                     </Typography>
 
