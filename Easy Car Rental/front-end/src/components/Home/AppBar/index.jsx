@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import {useNavigate} from "react-router";
+import image from "../../../assets/img/easy_car_rental__3_-removebg-preview.png";
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -48,7 +49,7 @@ const TransparentAppBar = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{justifyContent: "space-between"}}>
                     <Stack direction="row" spacing={2}>
-                        <CarRentalTwoToneIcon sx={{display: {xs: 'none', md: 'flex',}, mr: 1, color: 'white'}}/>
+                        {/*<CarRentalTwoToneIcon sx={{display: {xs: 'none', md: 'flex',}, mr: 1, color: 'white'}}/>
                         <Typography
                             variant="h6"
                             noWrap
@@ -65,7 +66,10 @@ const TransparentAppBar = () => {
                             }}
                         >
                             EASY CAR RENTAL
-                        </Typography>
+                        </Typography>*/}
+                        <Stack height={'100%'}>
+                            <img src={image} alt="logo" height={'100%'}/>
+                        </Stack>
                     </Stack>
                     <Stack direction="row" spacing={3}>
                         <Button

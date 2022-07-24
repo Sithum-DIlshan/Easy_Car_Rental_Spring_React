@@ -6,6 +6,8 @@ import {Logout} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import image from "../../../../assets/img/easy car rental.png";
+import Popup from "reactjs-popup";
+import LoginForm from "../../../Login/Form/LoginForm";
 
 export default function Topbar() {
 
@@ -121,12 +123,6 @@ export default function Topbar() {
                     </Menu>
                 </Stack>
             </Stack>
-            <Stack width={'100%'} height={'20%'} mt={'200px'} bgcolor={'black'}>
-
-            </Stack>
-
         </Stack>
     );
-
-
 }
