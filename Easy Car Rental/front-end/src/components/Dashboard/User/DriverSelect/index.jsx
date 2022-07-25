@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-export default function DistrictSelect(props) {
+export default function DriverSelect(props) {
 
     return (
         <Autocomplete
@@ -11,10 +11,11 @@ export default function DistrictSelect(props) {
             sx={{width: 220}}
             options={district}
             autoHighlight
+            size={'small'}
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    label={props.label}
+                    label={'select-driver'}
                     inputProps={{
                         ...params.inputProps,
                         autoComplete: 'new-password', // disable autocomplete and autofill

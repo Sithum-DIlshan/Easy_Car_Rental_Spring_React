@@ -22,7 +22,7 @@ export default function Topbar() {
 
     return (
         <Stack width={'100vw'}
-               height={'100vh'}
+               height={'auto'}
                direction={'column'}>
             <Stack width={'100%'}
                    height={'70px'}
