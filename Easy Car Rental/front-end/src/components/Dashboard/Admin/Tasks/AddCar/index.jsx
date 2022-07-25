@@ -4,9 +4,9 @@ import Typography from "@mui/material/Typography";
 import {IconButton, InputAdornment, InputLabel, OutlinedInput, TextField} from "@mui/material";
 import {PhotoCamera} from "@material-ui/icons";
 import Button from "@mui/material/Button";
-import TopBarwithoutmenu from "../../User/TopBarwithoutmenu";
+import TopBarwithoutmenu from "../../../User/TopBarwithoutmenu";
 import CartypeSelect from "../CartypeSelect";
-import RowRadioButtonsGroup from "../../../common/RadioButton";
+import RowRadioButtonsGroup from "../../../../common/RadioButton";
 import FormControl from "@mui/material/FormControl";
 
 class AddCar extends Component {
