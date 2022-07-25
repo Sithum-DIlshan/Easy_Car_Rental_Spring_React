@@ -5,15 +5,16 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export default function RowRadioButtonsGroup() {
-    const [value, setValue] = React.useState('no');
+export default function RowRadioButtonsGroup(props) {
+    const [value, setValue] = React.useState(props.option1);
+
 
     const handleChange = (event) => {
         setValue(event.target.value);
     };
     return (
         <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label">Need Driver</FormLabel>
+            <FormLabel id="demo-row-radio-buttons-group-label">{props.formLabel}</FormLabel>
             <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
@@ -21,8 +22,8 @@ export default function RowRadioButtonsGroup() {
                 value={value}
                 onChange={handleChange}
             >
-                <FormControlLabel value="yes" control={<Radio />} label="yes" />
-                <FormControlLabel value="no" control={<Radio />} label="no" />
+                <FormControlLabel value="yes" control={<Radio />} label={props.option1} />
+                <FormControlLabel value="no" control={<Radio />} label={props.option2} />
             </RadioGroup>
         </FormControl>
     );

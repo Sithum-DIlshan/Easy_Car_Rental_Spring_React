@@ -88,7 +88,7 @@ class PlaceRent extends Component {
                     </Stack>
                 </Stack>
                 <Stack width={'1150px'} mt={'20px'} borderRadius={1} bgcolor={'white'} mb={4}>
-                    <RowRadioButtonsGroup/>
+                    <RowRadioButtonsGroup formLabel="Need Driver" option1="yes" option2="no"/>
                 </Stack>
                 <Stack height={'250px'}>
                 <Cars/>
