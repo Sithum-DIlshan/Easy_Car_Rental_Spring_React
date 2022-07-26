@@ -41,6 +41,7 @@ class Cars extends Component {
         ];
 
         return (
+            <Stack height={this.props.height} display={this.props.display}>
                 <GridList direction={'column'} width={'100vw'} spacing={2} cols={3} style={{maxWidth:'100%'}}>
                     {carClass.map(car => (
                         <Paper
@@ -90,6 +91,7 @@ class Cars extends Component {
 
                     ))}
                 </GridList>
+            </Stack>
         );
     }
 

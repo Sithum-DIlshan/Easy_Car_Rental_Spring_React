@@ -14,6 +14,8 @@ export default function BackGroundImage() {
             behavior: 'smooth'
         })
     }
+
+
     return (
         <Stack direction={'column'}>
             <Box sx={{
