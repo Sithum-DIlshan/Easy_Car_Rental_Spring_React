@@ -23,9 +23,10 @@ import AccountMenu from "../components/Home/Greeting";
 function App() {
   return (
       <Routes>
-        <Route exact path='/' element={<LoginForm/>}/>
-       {/* <Route exact path='register' element={<RegisterPage/>}/>
-        <Route exact path='login' element={<LoginPage/>}/>*/}
+        <Route exact path='/' element={<RegisterPage/>}/>
+        <Route exact path='register' element={<RegisterPage/>}/>
+        <Route exact path='user/dashboard' element={<UserDashboard/>}/>
+        <Route exact path='login' element={<LoginPage/>}/>
       </Routes>
   );
 }

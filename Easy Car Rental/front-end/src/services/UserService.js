@@ -14,5 +14,33 @@ class UserService {
 
         return await promise;
     }
+
+    searchUser = async (params) => {
+        const promise = new Promise((resolve, reject) => {
+            axios.get('user', {params: params})
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        })
+        return await promise;
+    };
+
+    postUser = async (data)=>{
+        const promise = new Promise((resolve, reject)=>{
+            axios.post('user', data)
+                .then((res)=>{
+                    return resolve(res)
+                })
+                .catch((err)=>{
+                    return resolve(err)
+                })
+        });
+
+        return await promise;
+    }
+
 }
 export default new UserService();
