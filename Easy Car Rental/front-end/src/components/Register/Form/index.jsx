@@ -17,8 +17,10 @@ export default function RegisterForm(props) {
     const [btnDisabled, setBtnDisabled] = useState(false);
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [fileLabel, setFileLabel] = useState('NIC/Driving-license');
-    const [file, setFile] = useState(null);
+    const [fileLabel1, setFileLabel1] = useState('Profile-photo');
+    const [fileLabel2, setFileLabel2] = useState('NIC/Driving-license');
+    const [profile, setProfile] = useState(null);
+    const [doc, setDoc] = useState(null);
     const navigation = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -63,16 +65,18 @@ export default function RegisterForm(props) {
         });
 
         var form = new FormData();
-        form.append("myFile", file);
+        form.append("profile", profile);
+        form.append("doc", doc);
         form.append("user", blob);
 
+        console.log(form);
 
         if (formData.password == confirmPassword){
             /*JSON.stringify(formData);*/
             let res = await UserService.postUser(form);
             console.log(res);
 
-            if (res.status === 200) {
+            if (res.status === 201) {
                 console.log('submit done');
                 setMessage('Register Done Login to Continue');
                 setSeverity('success')
@@ -104,24 +108,15 @@ export default function RegisterForm(props) {
         setOpen(false);
     };
 
-    const upload = (e) => {
+    const uploadProfile = (e) => {
         e.preventDefault();
-        /* setFormData(prevState => ({...prevState, image: e.target.files[0]}));*/
-        setFileLabel(e.target.files[0].name);
-        setFile(e.target.files[0]);
-        /* setFormData(prevState => ({...prevState, image: []}));
-         const files = e.target.files;
-         setFileLabel(e.target.files[0].name);
-
-             let reader = new FileReader();
-             let file = files[0];
-
-             reader.onloadend = () => {
-                 setFormData(prevState => ({...prevState, image: formData.image.concat(reader.result)}));
-             }
-
-             reader.readAsDataURL(file);*/
-
+        setFileLabel1(e.target.files[0].name);
+        setProfile(e.target.files[0]);
+    }
+const uploadIdDoc = (e) => {
+        e.preventDefault();
+        setFileLabel2(e.target.files[0].name);
+        setDoc(e.target.files[0]);
     }
 
     return (
@@ -171,9 +166,9 @@ export default function RegisterForm(props) {
                                                onChange={changeConfirmPassword}
                                                sx={{width: '400px'}}/>
                             </Stack>
-                            <Stack width={'70%'} direction={'row'} spacing={0}>
+                            <Stack width={'70%'} direction={'row'} spacing={3} >
                                 <TextField id="outlined-search"
-                                           label={fileLabel}
+                                           label={fileLabel1}
                                            type="text"
                                            size={'small'}
                                     /*sx={{width: '170px'}}*/
@@ -184,7 +179,25 @@ export default function RegisterForm(props) {
                                                }}*!/>Subscribe</Button>*/
                                                    <IconButton color="primary"
                                                                component="label">
-                                                       <input hidden accept="image/*" type="file" onChange={upload}/>
+                                                       <input hidden accept="image/*" type="file" onChange={uploadProfile}/>
+                                                       <PhotoCamera/>
+                                                   </IconButton>
+                                           }}
+                                           disabled
+                                />
+                                <TextField id="outlined-search"
+                                           label={fileLabel2}
+                                           type="text"
+                                           size={'small'}
+                                    /*sx={{width: '170px'}}*/
+                                           InputProps={{
+                                               endAdornment:
+                                               /*<Button variant={'contained'} /!*sx={{
+                                                   height:'100%'
+                                               }}*!/>Subscribe</Button>*/
+                                                   <IconButton color="primary"
+                                                               component="label">
+                                                       <input hidden accept="image/*" type="file" onChange={uploadIdDoc}/>
                                                        <PhotoCamera/>
                                                    </IconButton>
                                            }}

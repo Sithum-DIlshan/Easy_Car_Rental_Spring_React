@@ -8,11 +8,14 @@ import image from "../../../../assets/img/easy car rental.png";
 import MailIcon from '@mui/icons-material/Mail';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import UserReqs from "../UserRequests";
-import Cars from "../../Admin/Cars";
+// import Cars from "../../Admin/Cars";
 import RentReqs from "../RentRequests";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import avatar from "../../../../assets/img/Untitled design.png";
+import Cars from "../Cars";
+import {useEffect} from "react";
+import UserService from "../../../../services/UserService";
 
 export default function AdminTopbar(props) {
 
@@ -20,6 +23,16 @@ export default function AdminTopbar(props) {
     const [displayUsrReqs, setDisplayUsrReqs] = React.useState('none');
     const [displayCars, setDisplayCars] = React.useState('static');
     const [displayRentReqs, setDisplayRentReqs] = React.useState('none');
+    const [userReqCount, setUserReqCount] = React.useState(0);
+
+    const loadUserReqs = async () => {
+        let res = await UserService.fetchUser();
+        setUserReqCount(res.data.data.length);
+    }
+
+    useEffect(() => {
+        loadUserReqs();
+    }, []);
 
 
     const open = Boolean(anchorEl);
@@ -148,7 +161,7 @@ export default function AdminTopbar(props) {
                                 }
                             }}>Add driver</Button>
                             <IconButton aria-label={notificationsLabel(100)} sx={{mr: '40px'}}>
-                                <Badge badgeContent={100} color="secondary" onClick={loadUsrReqs}>
+                                <Badge badgeContent={userReqCount} color="secondary" onClick={loadUsrReqs}>
                                     <MailIcon color={'#bdbdbd'}/>
                                 </Badge>
                             </IconButton>

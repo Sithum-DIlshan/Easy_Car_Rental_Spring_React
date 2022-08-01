@@ -1,45 +1,62 @@
-import {Component} from "react";
+import {useEffect, useState} from "react";
 import {Grid, Paper} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import {GridList} from "@material-ui/core";
 import ButtonBase from "@mui/material/ButtonBase";
+import CarService from "../../../../services/CarService";
 
-export default function UserCars()  {
+export default function UserCars() {
 
-        const carClass = [
-            {
-                label: 'Luxury',
-            },
-            {
-                label: 'Semi-luxury',
-            },
-            {
-                label: 'Mini',
-            },
-            {
-                label: 'Mini',
-            },
-            {
-                label: 'Luxury',
-            },
-            {
-                label: 'Semi-luxury',
-            },
-            {
-                label: 'Mini',
-            },
-            {
-                label: 'Mini',
-            },
-        ];
+    /*
+            const carClass = [
+                {
+                    label: 'Luxury',
+                },
+                {
+                    label: 'Semi-luxury',
+                },
+                {
+                    label: 'Mini',
+                },
+                {
+                    label: 'Mini',
+                },
+                {
+                    label: 'Luxury',
+                },
+                {
+                    label: 'Semi-luxury',
+                },
+                {
+                    label: 'Mini',
+                },
+                {
+                    label: 'Mini',
+                },
+            ];
+    */
 
-        return (
-            <Stack height={'40vh'}  >
-                <GridList direction={'column'} width={'100vw'} spacing={2} cols={3} style={{maxWidth:'100%'}}>
-                    {carClass.map(car => (
-                        <Paper
+    const [carClass, setCarClass] = useState([]);
+
+    const loadCars = async () => {
+        let res = await CarService.fetchCars();
+        setCarClass(res.data.data);
+        console.log(res.data.data);
+    }
+
+    useEffect(() => {
+        loadCars();
+    }, []);
+
+
+    return (
+        <Stack height={'60vh'}>
+            <GridList direction={'column'} width={'100vw'} spacing={2} cols={3} style={{maxWidth: '100%'}}>
+                {carClass.map(car => {
+                    if (car.available)
+                        return <Paper
                             sx={{
                                 p: 2,
                                 margin: 'auto',
@@ -51,21 +68,22 @@ export default function UserCars()  {
                         >
                             <Grid container spacing={2}>
                                 <Grid item>
-                                    <ButtonBase sx={{width: 128, height: 128}}>
-                                        <img alt="complex" src="/static/images/grid/complex.jpg"/>
+                                    <ButtonBase sx={{width: 200, height: 140}}>
+                                        <img alt="complex" src={("data:image/png;base64," + car.front)} width={'200px'}
+                                             height={'150px'}/>
                                     </ButtonBase>
                                 </Grid>
                                 <Grid item xs={12} sm container>
                                     <Grid item xs container direction="column" spacing={2}>
                                         <Grid item xs>
                                             <Typography gutterBottom variant="subtitle1" component="div">
-                                                Standard license
+                                                {car.brand}
                                             </Typography>
                                             <Typography variant="body2" gutterBottom>
-                                                Full resolution 1920x1080 • JPEG
+                                                {car.description}
                                             </Typography>
                                             <Typography variant="body2" color="text.secondary">
-                                                ID: 1030114
+                                                ID: {car.id}
                                             </Typography>
                                         </Grid>
                                         <Grid item>
@@ -77,19 +95,23 @@ export default function UserCars()  {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle1" component="div">
-                                            $19.00
+                                            ${car.rentFeePerDay}
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </Grid>
                         </Paper>
 
-                    ))}
-                </GridList>
-                <Stack width={'100%'} direction={'row'} justifyContent={'end'} >
-                    <Button sx={{textTransform: "none", mr:'40px', mt:'40px'}} size={'medium'} variant={'contained'}>next</Button>
-                </Stack>
+
+                    return <></>
+                })}
+
+            </GridList>
+            <Stack width={'100%'} direction={'row'} justifyContent={'end'}>
+                <Button sx={{textTransform: "none", mr: '40px', mt: '40px'}} size={'medium'}
+                        variant={'contained'}>next</Button>
             </Stack>
-        );
+        </Stack>
+    );
 
 }

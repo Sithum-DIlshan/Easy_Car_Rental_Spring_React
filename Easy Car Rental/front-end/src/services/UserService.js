@@ -30,7 +30,7 @@ class UserService {
 
     postUser = async (data)=>{
         const promise = new Promise((resolve, reject)=>{
-            axios.post('upload', data)
+            axios.post('user', data)
                 .then((res)=>{
                     return resolve(res)
                 })
@@ -41,6 +41,35 @@ class UserService {
 
         return await promise;
     }
+
+  update = async (data)=>{
+        const promise = new Promise((resolve, reject)=>{
+            axios.put('user', data)
+                .then((res)=>{
+                    return resolve(res)
+                })
+                .catch((err)=>{
+                    return resolve(err)
+                })
+        });
+
+        return await promise;
+    }
+
+
+    /*updateApproval = async (params)=>{
+        const promise = new Promise((resolve, reject)=>{
+                axios.put('user', {username:{username:"sithum"}})
+                .then((res)=>{
+                    return resolve(res)
+                })
+                .catch((err)=>{
+                    return resolve(err)
+                })
+        });
+
+        return await promise;
+    }*/
 
 }
 export default new UserService();

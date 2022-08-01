@@ -1,39 +1,24 @@
-import {Component} from "react";
+import {Component, useEffect, useState} from "react";
 import {Grid, Paper} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import {GridList} from "@material-ui/core";
 import ButtonBase from "@mui/material/ButtonBase";
+import CarService from "../../../../services/CarService";
 
 export default function Cars(props)  {
+    const [carClass, setCarClass] = useState([]);
 
-        const carClass = [
-            {
-                label: 'Luxury',
-            },
-            {
-                label: 'Semi-luxury',
-            },
-            {
-                label: 'Mini',
-            },
-            {
-                label: 'Mini',
-            },
-            {
-                label: 'Luxury',
-            },
-            {
-                label: 'Semi-luxury',
-            },
-            {
-                label: 'Mini',
-            },
-            {
-                label: 'Mini',
-            },
-        ];
+    const loadCars = async () => {
+        let res = await CarService.fetchCars();
+        setCarClass(res.data.data);
+        console.log(res.data.data);
+    }
+
+    useEffect(() => {
+        loadCars();
+    }, []);
 
         return (
             <Stack height={'70vh'}  display={props.display}>
@@ -51,33 +36,34 @@ export default function Cars(props)  {
                         >
                             <Grid container spacing={2} sx={{mb:'20px'}}>
                                 <Grid item>
-                                    <ButtonBase sx={{width: 128, height: 128}}>
-                                        <img alt="complex" src="/static/images/grid/complex.jpg"/>
+                                    <ButtonBase sx={{width: 200, height: 140}}>
+                                        <img alt="complex" src={("data:image/png;base64," + car.front)} width={'200px'}
+                                             height={'150px'}/>
                                     </ButtonBase>
                                 </Grid>
                                 <Grid item xs={12} sm container>
                                     <Grid item xs container direction="column" spacing={2}>
                                         <Grid item xs>
                                             <Typography gutterBottom variant="subtitle1" component="div">
-                                                Standard license
+                                                {car.brand}
                                             </Typography>
                                             <Typography variant="body2" gutterBottom>
-                                                Full resolution 1920x1080 • JPEG
+                                                {car.description}
                                             </Typography>
                                             <Typography variant="body2" color="text.secondary">
-                                                ID: 1030114
+                                                {car.id}
                                             </Typography>
                                         </Grid>
                                         <Grid item>
                                             {/*<Typography sx={{ cursor: 'pointer' }} variant="body2">
                                             Remove
                                         </Typography>*/}
-                                            <Button variant={'contained'}>Select</Button>
+                                            <Button variant={'contained'} color={'error'} sx={{textTransform:'false'}}>delete</Button>
                                         </Grid>
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle1" component="div">
-                                            $19.00
+                                            ${car.rentFeePerDay}
                                         </Typography>
                                     </Grid>
                                 </Grid>

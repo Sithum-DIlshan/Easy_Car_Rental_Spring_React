@@ -10,13 +10,22 @@ import Popup from "reactjs-popup";
 import LoginForm from "../../../Login/Form/LoginForm";
 import {styled} from "@mui/material/styles";
 import {useNavigate} from "react-router";
+import {useEffect} from "react";
 
 export default function Topbar(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [data, setData] = React.useState(props.data);
-    const[avatar, setAvatar] = React.useState("data:image/png;base64," + data.image);
+    const[avatar, setAvatar] = React.useState("data:image/png;base64," + data.avatar);
     const[color, setColor] = React.useState(decideColor);
     const navigate = useNavigate();
+
+    useEffect(() => {
+/*
+        loadUserReqs();
+*/
+    }, []);
+
+
 
     function decideColor() {
         if (!data.verified){
