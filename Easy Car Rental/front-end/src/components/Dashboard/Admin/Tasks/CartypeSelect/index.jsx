@@ -5,6 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 export default function CartypeSelect(props) {
 
+
     return (
         <Autocomplete
             id="country-select-demo"
@@ -12,6 +13,7 @@ export default function CartypeSelect(props) {
             options={type}
             autoHighlight
             size={'small'}
+            onChange={props.onChange}
             renderInput={(params) => (
                 <TextField
                     {...params}

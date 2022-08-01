@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import {GridList} from "@material-ui/core";
 import ButtonBase from "@mui/material/ButtonBase";
 
-export default function UserCars()  {
+export default function Cars(props)  {
 
         const carClass = [
             {
@@ -36,7 +36,7 @@ export default function UserCars()  {
         ];
 
         return (
-            <Stack height={'40vh'}  >
+            <Stack height={'70vh'}  display={props.display}>
                 <GridList direction={'column'} width={'100vw'} spacing={2} cols={3} style={{maxWidth:'100%'}}>
                     {carClass.map(car => (
                         <Paper
@@ -49,7 +49,7 @@ export default function UserCars()  {
                                     theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                             }}
                         >
-                            <Grid container spacing={2}>
+                            <Grid container spacing={2} sx={{mb:'20px'}}>
                                 <Grid item>
                                     <ButtonBase sx={{width: 128, height: 128}}>
                                         <img alt="complex" src="/static/images/grid/complex.jpg"/>

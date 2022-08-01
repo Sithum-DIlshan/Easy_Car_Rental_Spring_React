@@ -1,40 +1,22 @@
-import {Component, useState} from "react";
+import {useState} from "react";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import {Alert, Checkbox, FormControlLabel, InputAdornment, Snackbar, TextField} from "@mui/material";
+import {Checkbox, FormControlLabel, InputAdornment, TextField} from "@mui/material";
 import {AccountCircle} from "@material-ui/icons";
 import Button from "@mui/material/Button";
 import UserService from "../../../services/UserService";
 import {useNavigate} from "react-router";
-import {Navigate} from "react-router-dom"
 import SnackBar from "../../common/SnackBar";
+import AdminService from "../../../services/AdminService";
 
 export default function LoginForm(props) {
-    /*constructor(props) {
-        super(props);
-        this.state = {
-            formData: {
-                username: '',
-                password: '',
-            },
-            alert: false,
-            message: '',
-            severity: '',
-
-            data: [],
-            btnLabel: 'save',
-            btnColor: 'primary',
-
-            path:'/',
-        }
-        const navigate=useNavigate();
-    }*/
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [data, setData] = useState('');
+    /*const [formData, setFormData] = useState(null);*/
     const [open, setOpen] = useState(false);
     const [snackMsg, setSnackMsg] = useState('');
-    const [severity, setSeverity] = useState('');
+    const [severity, setSeverity] = useState('error');
+
 
     const navigate = useNavigate();
 
@@ -44,34 +26,51 @@ export default function LoginForm(props) {
             username: username
         }
 
-        let res = await UserService.searchUser(params);
+        let admin = await AdminService.fetchAdmin();
 
-
-        if (res.status === 200 && password === res.data.data.password) {
-            setData(res.data.data);
-            /* this.setState({
-                 data: res.data.data
-             });
-            if (){*/
-            /*console.log("login done");
-
-            this.setState({
-                path: 'register'
-            })*/
-            /*}*/
+        if (admin.data.data[0].id == username && password == admin.data.data[0].password) {
             setSeverity('success')
-            setSnackMsg('Login done')
+            setSnackMsg('Login as Admin be carefully on what you are doing')
             setOpen(true);
-            /* console.log('login done')
-             navigate('register')*/
-            setTimeout(()=> {
-                navigate('register');
-            }, 2000);
 
-        }else {
-            setSeverity('error')
-            setSnackMsg('Wrong credentials')
-            setOpen(true);
+            setTimeout(() => {
+                navigate('/admin/dashboard', {state: {formData: admin.data.data[0]}});
+            }, 2000);
+        } else {
+
+            let res = await UserService.searchUser(params);
+
+
+            if (res.status === 200 && password === res.data.data.password) {
+                /* this.setState({
+                     data: res.data.data
+                 });
+                if (){*/
+                /*console.log("login done");
+
+                this.setState({
+                    path: 'register'
+                })*/
+
+                console.log(res.data.data);
+
+                /*
+                            setFormData(prevState => ({...prevState, file: res.data.data.file}));
+                */
+
+                setSeverity('success')
+                setSnackMsg('Login done')
+                setOpen(true);
+                /* console.log('login done')
+                 navigate('register')*/
+                setTimeout(() => {
+                    navigate('/user/dashboard', {state: {formData: res.data.data}});
+                }, 2000);
+            } else {
+                setSeverity('error')
+                setSnackMsg('Wrong credentials')
+                setOpen(true);
+            }
         }
 
     };
@@ -147,7 +146,7 @@ export default function LoginForm(props) {
                                 onClick={() => sign_in_onClick(username)}>{'sign in'}</Button>
 
                     </Stack>
-                   {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
                             {snackMsg}
                         </Alert>

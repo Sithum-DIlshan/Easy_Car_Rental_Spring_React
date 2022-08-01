@@ -30,7 +30,7 @@ class UserService {
 
     postUser = async (data)=>{
         const promise = new Promise((resolve, reject)=>{
-            axios.post('user', data)
+            axios.post('upload', data)
                 .then((res)=>{
                     return resolve(res)
                 })

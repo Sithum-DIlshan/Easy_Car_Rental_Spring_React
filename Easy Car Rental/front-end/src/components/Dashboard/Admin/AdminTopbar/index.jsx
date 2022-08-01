@@ -8,10 +8,11 @@ import image from "../../../../assets/img/easy car rental.png";
 import MailIcon from '@mui/icons-material/Mail';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import UserReqs from "../UserRequests";
-import Cars from "../../User/Cars";
+import Cars from "../../Admin/Cars";
 import RentReqs from "../RentRequests";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import avatar from "../../../../assets/img/Untitled design.png";
 
 export default function AdminTopbar(props) {
 
@@ -166,7 +167,7 @@ export default function AdminTopbar(props) {
                                     aria-haspopup="true"
                                     aria-expanded={open ? 'true' : undefined}
                                 >
-                                    <Avatar sx={{width: 32, height: 32}}>M</Avatar>
+                                    <Avatar sx={{width: 32, height: 32}} src={avatar}></Avatar>
                                 </IconButton>
 
 
@@ -209,7 +210,7 @@ export default function AdminTopbar(props) {
                             anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
                         >
                             <MenuItem>
-                                <Avatar/> Profile
+                                <Avatar src={avatar}/> Profile
                             </MenuItem>
                             <Divider/>
 
@@ -230,9 +231,9 @@ export default function AdminTopbar(props) {
                 </Stack>
                 <Divider />
             </Stack>
-            <UserReqs data={carClass} height={'450px'} display={displayUsrReqs}/>
-            <Cars height={'450px'} display={displayCars}/>
-            <RentReqs data={carClass} height={'450px'} display={displayRentReqs}/>
+            <UserReqs data={carClass} height={'70vh'} display={displayUsrReqs}/>
+            <Cars display={displayCars}/>
+            <RentReqs data={carClass} height={'70vh'} display={displayRentReqs}/>
         </Stack>
 
 )

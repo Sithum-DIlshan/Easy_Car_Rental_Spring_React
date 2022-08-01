@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Stack from "@mui/material/Stack";
-import {Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip} from "@mui/material";
+import {Avatar, Badge, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip} from "@mui/material";
 import {Settings} from "@material-ui/icons";
 import {Logout} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
@@ -8,10 +8,26 @@ import Box from "@mui/material/Box";
 import image from "../../../../assets/img/easy car rental.png";
 import Popup from "reactjs-popup";
 import LoginForm from "../../../Login/Form/LoginForm";
+import {styled} from "@mui/material/styles";
+import {useNavigate} from "react-router";
 
-export default function Topbar() {
-
+export default function Topbar(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [data, setData] = React.useState(props.data);
+    const[avatar, setAvatar] = React.useState("data:image/png;base64," + data.image);
+    const[color, setColor] = React.useState(decideColor);
+    const navigate = useNavigate();
+
+    function decideColor() {
+        if (!data.verified){
+            return '#ff0000'
+        } return '#44b700'
+    }
+
+    const logout = (e)=>{
+        navigate('/');
+    }
+
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -20,7 +36,38 @@ export default function Topbar() {
         setAnchorEl(null);
     };
 
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            backgroundColor: color,
+            color: color,
+            boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+            '&::after': {
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                animation: 'ripple 1.2s infinite ease-in-out',
+                border: '1px solid currentColor',
+                content: '""',
+            },
+        },
+        '@keyframes ripple': {
+            '0%': {
+                transform: 'scale(.8)',
+                opacity: 1,
+            },
+            '100%': {
+                transform: 'scale(2.4)',
+                opacity: 0,
+            },
+        },
+    }));
+
+
     return (
+
         <Stack width={'100vw'}
                height={'auto'}
                direction={'column'}>
@@ -61,7 +108,13 @@ export default function Topbar() {
                                 aria-haspopup="true"
                                 aria-expanded={open ? 'true' : undefined}
                             >
-                                <Avatar sx={{width: 32, height: 32}}>M</Avatar>
+                                <StyledBadge
+                                    overlap="circular"
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                                    variant="dot"
+                                >
+                                <Avatar sx={{width: 32, height: 32}} src={avatar}>M</Avatar>
+                                </StyledBadge>
                             </IconButton>
 
 
@@ -104,7 +157,7 @@ export default function Topbar() {
                         anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
                     >
                         <MenuItem>
-                            <Avatar/> Profile
+                            <Avatar src={avatar}/> Profile
                         </MenuItem>
                         <Divider/>
 
@@ -114,7 +167,7 @@ export default function Topbar() {
                             </ListItemIcon>
                             Settings
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem onClick={logout}>
                             <ListItemIcon>
                                 <Logout fontSize="small"/>
                             </ListItemIcon>

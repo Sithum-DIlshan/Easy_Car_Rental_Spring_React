@@ -74,7 +74,7 @@ class AdminDashboard extends Component {
         return (
             <Fragment>
                 <AdminTopbar />
-               {/* <Stack width={'100vw'} height={'500px'} mt={'50px'}>
+              {/*  <Stack width={'100vw'} height={'500px'} mt={'50px'}>
                     <UserReqs data={carClass} height={'450px'} display={this.state.usrReqDisplay}/>
                     <Cars height={'450px'} display={this.state.carDisplay}/>
                     <RentReqs data={carClass} height={'450px'} display={this.state.rentReqDisplay}/>
