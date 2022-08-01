@@ -10,6 +10,8 @@ import FormControl from "@mui/material/FormControl";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
+import CarService from "../../../../../services/CarService";
+import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 
 export default function AddCar(props) {
     /*constructor(props) {
@@ -23,8 +25,8 @@ export default function AddCar(props) {
 
     const [fileLabel, setFileLabel] = React.useState('');
     const [text, setText] = React.useState('');
-    const [transmissionType, setTransmissionType] = React.useState('auto');
-    const [fuelType, setFuelType] = React.useState('petrol');
+    const [carTransmissionType, setTransmissionType] = React.useState('auto');
+    const [carFuelType, setFuelType] = React.useState('petrol');
 
     const [frontView, setFrontView] = React.useState('Front-View');
     const [sideView, setSideView] = React.useState('Side-View');
@@ -39,9 +41,8 @@ export default function AddCar(props) {
         type: '',
         rentFeePerDay: '0',
         description: '',
-        fuelType: '',
-        color: '',
-        transmission: '',
+        fuelType: 'petrol',
+        transmission: 'auto',
         brand: '',
         mileAge: '0',
         available: true,
@@ -63,24 +64,65 @@ export default function AddCar(props) {
 
     const handleChangeTransmission = (event) => {
         setTransmissionType(event.target.value);
-        setCarData(prevState => ({...prevState, transmission: (event.target.value)}))
+        setCarData(prevState => ({...prevState, transmission: (carTransmissionType)}))
     };
 
     const handleChangeFuelType = (event) => {
         setFuelType(event.target.value);
-        setCarData(prevState => ({...prevState, fuelType: (event.target.value)}))
+        setCarData(prevState => ({...prevState, fuelType: (carFuelType)}))
 
     };
 
-    const setCarType = (event) => {
-        setCarData(prevState => ({...prevState, type: (event.target.value)}))
+    const setCarType = (event, value) => {
+        setCarData(prevState => ({...prevState, type: (value.label)}))
+/*
+        console.log(value.label)
+*/
     }
 
-    const addCar=(e)=>{
+    const uploadFrontView=(e)=>{
+        e.preventDefault();
+
+        setFrontView(e.target.files[0].name);
+        setFrontImage(e.target.files[0]);
+    }
+
+    const uploadSideView=(e)=>{
+        e.preventDefault();
+
+        setSideView(e.target.files[0].name);
+        setSideImage(e.target.files[0]);
+    }
+    const uploadBackView=(e)=>{
+        e.preventDefault();
+
+        setBackView(e.target.files[0].name);
+        setBackImage(e.target.files[0]);
+    }
+
+    const addCar=async ()=>{
+
+        // eslint-disable-next-line no-use-before-define
         console.log(carData);
+
+        const json = JSON.stringify(carData);
+        const blob = new Blob([json], {
+            type: 'application/json'
+        });
+
+        var car = new FormData();
+        car.append("frontView", frontImage);
+        car.append("sideView", sideImage);
+        car.append("backView", backImage);
+        car.append("car", blob);
+
+        let res = await CarService.saveCar(car);
+        console.log(res);
+
     }
 
     return (
+        <ValidatorForm onSubmit={addCar}>
         <Stack justifyContent={'center'} alignItems={'center'} height={'100vh'} width={'100vw'} maxWidth={'100%'}>
             <TopBarwithoutmenu/>
             <Stack height={'83vh'} width={'70vw'} spacing={3} border={'1px solid #e7eaed'} boxShadow={2}
@@ -105,7 +147,7 @@ export default function AddCar(props) {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            value={transmissionType}
+                            value={carTransmissionType}
                             onChange={handleChangeTransmission}
                         >
                             <FormControlLabel value="auto" control={<Radio/>} label={"auto"}/>
@@ -118,7 +160,7 @@ export default function AddCar(props) {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            value={fuelType}
+                            value={carFuelType}
                             onChange={handleChangeFuelType}
                             defaultValue="auto"
                         >
@@ -128,7 +170,7 @@ export default function AddCar(props) {
                     </Stack>
 
                     <Stack width={'70%'} direction={'row'} spacing={4}>
-                        <TextField id="outlined-search" label="Chassi number" type="password" size={'small'}
+                        <TextField id="outlined-search" label="Chassi number" type="text" size={'small'}
                                    sx={{width: '400px'}} onChange={setCarId}/>
                         <TextField
                             id="outlined-multiline-flexible"
@@ -162,7 +204,7 @@ export default function AddCar(props) {
                                        }}*!/>Subscribe</Button>*/
                                            <IconButton color="primary" aria-label={fileLabel}
                                                        component="label">
-                                               <input hidden accept="image/*" type="file"/>
+                                               <input hidden accept="image/*" type="file" onChange={uploadFrontView}/>
                                                <PhotoCamera/>
                                            </IconButton>
                                    }}
@@ -182,7 +224,7 @@ export default function AddCar(props) {
                                        }}*!/>Subscribe</Button>*/
                                            <IconButton color="primary" aria-label={fileLabel}
                                                        component="label">
-                                               <input hidden accept="image/*" type="file"/>
+                                               <input hidden accept="image/*" type="file" onChange={uploadBackView}/>
                                                <PhotoCamera/>
                                            </IconButton>
                                    }}
@@ -200,7 +242,7 @@ export default function AddCar(props) {
                                        }}*!/>Subscribe</Button>*/
                                            <IconButton color="primary" aria-label={fileLabel}
                                                        component="label">
-                                               <input hidden accept="image/*" type="file"/>
+                                               <input hidden accept="image/*" type="file" onChange={uploadSideView}/>
                                                <PhotoCamera/>
                                            </IconButton>
                                    }}
@@ -211,13 +253,15 @@ export default function AddCar(props) {
                     <Stack width={'70%'} direction={'row'} spacing={0} justifyContent={'end'}>
                         <Button sx={{textTransform: "none"}} size={'small'} variant={'contained'}
                                 title={text}
-                                onClick={addCar}
+                                type={'submit'}
                         >{'Add'}</Button>
                     </Stack>
                 </Stack>
             </Stack>
 
         </Stack>
+        </ValidatorForm>
+
     );
 
 }
